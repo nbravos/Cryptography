@@ -25,7 +25,7 @@ It contains $5$ elements:
 - Cyphertextx
 - Decryption Algorithm
 
-![alt text](https://www.dropbox.com/pri/get/figura1.jpg?_subject_uid=115145873&w=AADVj7FYxyoLYwtfM5Td98AI0DmNMbxJUbZpTB7UMe_cYw)
+![alt text](https://raw.githubusercontent.com/nbravos/Cryptography/master/figura1.jpg)
 
 ### Block Cipher Principles
 Block Cipher is a type of symmetric encription algorithm that operates on fixed-length groups of bits of plaintext, called blocks and transform them into ciphertext block of the same length. Due that it is symmetric cryptography, it uses the same private key for encryption and decryption.
@@ -33,7 +33,7 @@ The block size is usually $64$ or $128$ bits long.
 
 
 
-![alt text](https://www.dropbox.com/pri/get/figura2.jpg?_subject_uid=115145873&w=AABvXUQOIzZX46FWARaoYeRzDAwzJSRF5ae5ms_lIk0DnQ)
+![alt text](https://raw.githubusercontent.com/nbravos/Cryptography/master/figura2.jpg)
 
 
 A block cipher consists of two paired algorithms, one for encryption, $E$, and the other for decryption, $D$. Both algorithms accept two inputs: an input block of size $n$ bits and a key of size $k$ bits; and both yield an n-bit output block. The decryption algorithm $D$ is defined to be the inverse function of encryption, $D=E^{-1}$.
@@ -49,7 +49,7 @@ $$K_i L_i :=R_{i-1};  R_i:=L_{i-1} \oplus f(R_{i-1, K_i})$$
 
 As shown in the figure below.
 
-![alt text](https://www.dropbox.com/pri/get/figura3.jpg?_subject_uid=115145873&w=AABfgVuX8gwNPZin3Dm943ky_5CCCcxkgVLyYl73vSY6JQ)
+![alt text](https://raw.githubusercontent.com/nbravos/Cryptography/master/figura3.jpg)
 
 In the second image, it's possible to see the $16$ rounds and the criss-crossing is known as the Feistel scheme.
 
@@ -216,3 +216,31 @@ The following images are a graphic description of the four permutation and subst
 **MixColumns**: The four bytes of each column of the state are combined using an invertible linear transformation. It multiplies the four bytes from the state to a fixed polynomial $c(y)$.
 
 Finally, for decryption it uses the expanded key in reverse order. AddRoundKey step is the same as encryption, though the whole process of decryption does differe from the encryption.
+
+#Blowfish
+Blowfishis a symmetrical block cipher designed in 1993, came up as an alternative to DES, however, AES is still more popular in present day.
+The key sizes for the algorithm are 32 to 448 bits and the block sizes are 64 bits, unlike AES where the blocks are larger. This algorithm is not a registered patent, it can be used free.
+Blowfish is a 16-round Feistel cipher and uses large (key-dependent) S-Boxes.
+
+In the figure #, the Blowfish diagram is described:
+![alt text](https://upload.wikimedia.org/wikipedia/commons/a/a3/BlowfishFuncionF.png)
+
+1. Blowfish is a fast block cipher, except when changing keys, due to each new key requires pre-processing and makes it slower than other block ciphers. In some applications this is a benefit, because it provides an extra protection against *dictionary attacks*.
+2. It needs only 5 KB of memory so its compact and easy to implement (not so much for embedded systems as early smartcards).
+3. The encryption process consist in 16+1 phases, which contain an **XOR**, a $+$ and s S-Box operation.
+
+#Asymmetric Cryptography
+Asymmetric Cryptography or public-key cryptography is a crypto system that uses pairs of keys, one for encryption and another for decryption; one is public, which is widely distributed while the other is private and only known by its owner.
+
+![alt text](http://4.bp.blogspot.com/-z-acQ-nDXqU/Txku_0Q3TvI/AAAAAAAAAKM/uVrkIgSLYjs/s1600/pke.gif)
+Example of Asymmetric Cryptography
+
+In this scheme, the sender encrypts the plaintext using the recipient public key (available to everybody) and for decryption, the recipient utilices his private key, but only the recipient can decrypt the message because he is the only one who knows his private key.
+
+The public key crypto systems rely on mathematical problems that currently admit no efficient solution and they do not require a secure channel for the public key distribution.
+
+Two of the best know uses of this type of crypto are:
+1. Public Key encryption as shown in figure #
+2. Digital Signatures, to verify the identity of the sender and the integrity of the message.
+
+##RSA
