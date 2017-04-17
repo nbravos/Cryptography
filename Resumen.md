@@ -22,7 +22,7 @@ It contains $5$ elements:
 - Plaintext
 - Encryption Algorithm
 - Private Key
-- Cyphertextx
+- Cyphertext
 - Decryption Algorithm
 
 ![alt text](https://raw.githubusercontent.com/nbravos/Cryptography/master/figura1.jpg)
@@ -244,3 +244,74 @@ Two of the best know uses of this type of crypto are:
 2. Digital Signatures, to verify the identity of the sender and the integrity of the message.
 
 ##RSA
+RSA stands for Rivest, Shamir and Adleman and it is a public key cryptographic system. It's based on the difficulty of factoring the product of two large prime numbers, (around $10^{200}$ ).
+
+The security of this algorithm rely on the key lenght and in order to stay up to date with the technology advances it needs to be increased. If the key lenght is increased it will slow down the encryption and decryption process and hardware implementation would be difficult.
+
+The algorithm involves four main steps:
+1. Key Generation
+2. Key Distribution
+3. Encryption
+4. Decryption
+
+1. The Key generation:
+The key is created and published by the product of two large prime numbers, along with an auxiliary values.  This numbers must be kept secret, because knowing these numbers allows anyone to decrypt the message.
+
+ The RSA is based on the trapdoor one-way function, as described in the figure below,
+ [!alt text](link to trapdoor)
+
+ $(m^d)^e$ $\equiv$ $(mod$ $n)$
+
+
+2. For key distribution, the public key is transmited via a reliable route.
+
+3. Encryption:
+To be able to encrypt a message, the following computation is done by the sender by using the recipient public key  $e$:
+
+$c^e$ $\equiv$ $(m^e)$ $(mod$ $n)$
+
+4. Decryption:
+The recipient can recover the message by using his private key exponent $d$ by computing
+
+$c^d$ $\equiv$ $(m^e)^d$ $\equiv$ $m$ $(mod$ $n)$
+
+The speed of RSA is $1000$ slower tan DES in hardware and in software is $100$ times slower than DES. Symmetric encryption es faster than asymmetrical algorithms.
+
+A comparison between the speed for RSA for different Modulus Lengths with an $8$ bit public key is presented in the following table:
+
+|                | 512 bits   |768 bits    | 1024       |
+| :------------- | :----------| :----------| :----------|
+| Encrypt        | 0.03       | 0.05       | 0.08       |
+| Decrypt        | 0.16       | 0.48       | 0.93       |
+| Sign           | 0.016      | 0.52       | 0.97       |
+| Verify         | 0.02       | 0.07       | 0.08       |
+
+#Diffie - Hellman Key Exchange
+
+The Diffie-Hellman Key Exchange is a security method for exchanging keys over a public channel.  
+
+The algorithm works as follows:
+
+1. Sender generates a key:
+  $X =g^xmod(n)$, $x$ is a large random integer.
+
+2. Recipient generates his key:
+  $Y =g^ymod(n)$, $y$ is a large random integer.
+
+3. Sender calculates his private key:
+  $k=Y^xmod(n)$
+
+4. Recipient calculates his private key:
+  $k'=X^ymod(n)$
+
+A Diffie-Hellman diagram is shown in figure #
+![alttext](https://github.com/nbravos/Cryptography/blob/master/800px-Diffie-Hellman-Schl%C3%BCsselaustausch.png)
+
+If the number of users increases, the participants can take part in an agreement by performing iterations of the agreement protocol and exchanging the data.
+
+Other Uses for Diffie-Hellman:
+
+1. Encryption: Such as ElGamal or Intehrated Encryption Scheme
+2. Forward Secrecy: Protocols that achieve forward secrecy generate new pairs for each session and discard them at the end. Diffie-Hellman is used because of its fast key generation.
+3. Password-Authenticated key agreement: in order to prevent Man in the Middle Attacks, such as Secure Remote Password Protocol.
+4. Public Key: This the case exposed previously.
