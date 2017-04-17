@@ -258,7 +258,7 @@ The algorithm involves four main steps:
 The key is created and published by the product of two large prime numbers, along with an auxiliary values.  This numbers must be kept secret, because knowing these numbers allows anyone to decrypt the message.
 
  The RSA is based on the trapdoor one-way function, as described in the figure below,
- [!alt text](link to trapdoor)
+ ![alt text](https://raw.githubusercontent.com/nbravos/Cryptography/master/trapdoor.png)
 
  $(m^d)^e$ $\equiv$ $(mod$ $n)$
 
@@ -305,7 +305,7 @@ The algorithm works as follows:
   $k'=X^ymod(n)$
 
 A Diffie-Hellman diagram is shown in figure #
-![alttext](https://github.com/nbravos/Cryptography/blob/master/800px-Diffie-Hellman-Schl%C3%BCsselaustausch.png)
+![alt text](https://raw.githubusercontent.com/nbravos/Cryptography/master/diffie-hellman.png)
 
 If the number of users increases, the participants can take part in an agreement by performing iterations of the agreement protocol and exchanging the data.
 
