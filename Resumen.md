@@ -254,6 +254,7 @@ The algorithm involves four main steps:
 3. Encryption
 4. Decryption
 
+
 1. The Key generation:
 The key is created and published by the product of two large prime numbers, along with an auxiliary values.  This numbers must be kept secret, because knowing these numbers allows anyone to decrypt the message.
 
@@ -315,3 +316,83 @@ Other Uses for Diffie-Hellman:
 2. Forward Secrecy: Protocols that achieve forward secrecy generate new pairs for each session and discard them at the end. Diffie-Hellman is used because of its fast key generation.
 3. Password-Authenticated key agreement: in order to prevent Man in the Middle Attacks, such as Secure Remote Password Protocol.
 4. Public Key: This the case exposed previously.
+
+The Diffie-Hellman algorithm is not suited for embedded systems because the mathematical operations are computationally extensive and if not properly (or the processor has a poor arithmetic performance) implemented it can lead to a poor system performance.
+
+#ElGamal Cryptographic System
+
+ElGamal is a public-key cryptography based on the Diffie-Hellman key exchange. It consists in three components:  
+1. Key Generator
+2. The Encryption algorithm
+3. The Decryption algorithm
+
+ElGamal algorithm was described by Taher Elgamal in 1985. He also proposed a signature scheme which differs from the encryption method from before.
+
+
+Key Generation Method
+
+ Using the Alice and Bob example:
+
+ 1. Alice chooses a random large prime number  $p$, a random generator number $g$, and a random key $a$.
+ 2. Alicia computes: $K=g^a(mod$ $p)$ and now she can publish her public key, $(K, g, p)$. The $a$ as stated before is her private key and is kept private.
+
+The same process is done by Bob to get his private and public key.
+
+ 2. Encryption
+Bob has a plaintext $M$ and he selects a random value $k$, which is a relatively prime of $(p-1)$.
+To get the cyphertext, Bob makes the following calculation:
+$A=g^k(mod$ $p)$
+$B=y^k(mod$ $p)$
+  In this case, both A and B are cyphertexts, the lenght is two times M.
+
+3. Decryption
+For decryption, Alice calculates:
+  $M=(B/A^x)$ $(mod$ $p)$, with $x$ beeing her private key.
+
+A simple example for ElGamal method:
+
+Alice chooses the following values:
+
+$p$ = 17, random prime value
+$g$ = 3, random generator
+$a$ = 6, random private key
+
+$K=g^a(mod$ $p)=3^6mod(17) = 15$
+Alice's Public Key: $(g, p, K) = (17, 3, 15)$
+
+Bob's plaintext $M$ = 9 (between $p$ and $(p-1)$  )
+
+Bob chooses the following values:
+$b$ = 5, random value
+
+$y_1=g^b$ $(mod$ $p)=5$  
+$y_2=K^bm$ $(mod$ $p)=15^5 * 9 = 1$
+
+So, the cyphertext would be:
+$C_b(m, b) = (y_1 = 5, y_2 = 1)$
+
+In order to get the plaintext, Alice uses her private key:
+
+$m =y_1^{(p-1-a)}y_2$ $(mod$ $p)= 5^{10} (mod$ $17) = 9$
+
+
+##ElGamal Signature Scheme
+
+The digital signatur ElGamal is based on the difficulty of computing discrete logarithms and it allows the user to confirm the authenticity of the message sent using a insecure channel.
+A variant of the scheme is used in the DSA (Digital Signa Algorithm).
+
+For key generation, the method is equal for the cryptographic method.
+To sign a message, the signer must do the following:
+
+1. Select a random number $k$, where $k$ is a relatively prime of (p-1)
+ The message then is:
+
+ $M=(Aa + Bk)$ $(mod$ $p-1)$
+ As stated before, the value of $k$ must be kept private.
+
+ To verify the validity of the message, the recipient performs one final calculation:
+
+ $y^A$$A^B$ $(mod$ $p)=g^M$
+
+ ElGamal encryption and signature, is in fact slower than the RSA method.
+ 
